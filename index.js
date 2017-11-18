@@ -23,7 +23,7 @@ import isAsyncIterable from "is-async-iterable";
  * @return {Promise}             The promise value that results from the reduction.
  */
 export default async function reduce(reducer, accumulator, data) {
-  console.log({ reducer, accumulator, data });
+  // ? console.log({ reducer, accumulator, data });
   if (typeof reducer !== "function") {
     throw new TypeError("reducer argument must be a function.");
   }
