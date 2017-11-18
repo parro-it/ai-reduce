@@ -23,12 +23,9 @@ import isAsyncIterable from "is-async-iterable";
  * @return {Promise}             The promise value that results from the reduction.
  */
 export default async function reduce(reducer, accumulator, data) {
+  console.log({ reducer, accumulator, data });
   if (typeof reducer !== "function") {
     throw new TypeError("reducer argument must be a function.");
-  }
-
-  if (typeof data === "undefined") {
-    return reduce.bind(null, reducer, accumulator);
   }
 
   if (!isAsyncIterable(data)) {
@@ -42,3 +39,6 @@ export default async function reduce(reducer, accumulator, data) {
 
   return accumulator;
 }
+
+reduce.partial = (reducer, accumulator) =>
+  reduce.bind(null, reducer, accumulator);
