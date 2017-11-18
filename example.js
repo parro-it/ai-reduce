@@ -1,3 +1,3 @@
-const $package_var = require("$package_name");
+const aiReduce = require("ai-reduce");
 
-console.log({ $package_var });
+console.log({ aiReduce });

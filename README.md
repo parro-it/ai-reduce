@@ -1,9 +1,9 @@
-# $package_name
+# ai-reduce
 
-[![Travis Build Status](https://img.shields.io/travis/$package_author/$package_name/master.svg)](http://travis-ci.org/$package_author/$package_name)
-[![NPM downloads](https://img.shields.io/npm/dt/$package_name.svg)](https://npmjs.org/package/$package_name)
+[![Travis Build Status](https://img.shields.io/travis/parro-it/ai-reduce/master.svg)](http://travis-ci.org/parro-it/ai-reduce)
+[![NPM downloads](https://img.shields.io/npm/dt/ai-reduce.svg)](https://npmjs.org/package/ai-reduce)
 
-> $package_description
+> Reduce for async iterables.
 
 background details relevant to understanding what this module does
 
@@ -15,9 +15,9 @@ __This module is part of [Async iterable fun](https://github.com/parro-it/ai-fun
 description of the example
 
 ```js
-const $package_var = require('$package_name');
+const aiReduce = require('ai-reduce');
 
-console.log({$package_var});
+console.log({aiReduce});
 ```
 
 This will output
@@ -32,7 +32,7 @@ This will output
 With [npm](https://npmjs.org/) installed, run
 
 ```bash
-npm install --save $package_name
+npm install --save ai-reduce
 ```
 
 ## See Also
