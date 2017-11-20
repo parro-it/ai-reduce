@@ -2,6 +2,12 @@ import isAsyncIterable from "is-async-iterable";
 
 const Unspecified = {};
 
+function checkReducerArgument(reducer) {
+  if (typeof reducer !== "function") {
+    throw new TypeError("reducer argument must be a function.");
+  }
+}
+
 /**
  * The reduce() method applies a function against an accumulator and each element
  * in the async iterable to reduce it to a single promise.
@@ -29,9 +35,7 @@ const Unspecified = {};
  * @return {Promise}             The promise value that results from the reduction.
  */
 export default async function reduce(data, reducer, initialValue) {
-  if (typeof reducer !== "function") {
-    throw new TypeError("reducer argument must be a function.");
-  }
+  checkReducerArgument(reducer);
 
   if (!isAsyncIterable(data)) {
     throw new TypeError("data argument must be an iterable or async-iterable.");
@@ -69,5 +73,8 @@ export default async function reduce(data, reducer, initialValue) {
  * @param  {any} accumulator The accumulator argument to partially apply
  * @return {Function}           A `reduce` unary function that take a data argument
  */
-reduce.with = (reducer, accumulator) => data =>
-  reduce(data, reducer, accumulator);
+reduce.with = (reducer, accumulator) => {
+  checkReducerArgument(reducer);
+
+  return data => reduce(data, reducer, accumulator);
+};

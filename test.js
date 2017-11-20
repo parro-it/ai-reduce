@@ -84,3 +84,11 @@ test("throw async during iteration if reducer return a rejected promise", async 
   const err = await rejection(reduce(["ciao"], async () => fail(), 0));
   t.is(err.message, "test");
 });
+
+test("with throw sync if reducer is not a function", async t => {
+  t.throws(
+    () => reduce.with(0),
+    TypeError,
+    "reducer argument must be a function."
+  );
+});
