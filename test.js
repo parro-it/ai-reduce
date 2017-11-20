@@ -6,6 +6,10 @@ function reducer(accum, item) {
   return accum + item.answer;
 }
 
+function sum(accum, item) {
+  return accum + item;
+}
+
 test("exports a function", async t => {
   t.is(typeof reduce, "function");
 });
@@ -19,7 +23,25 @@ function fromArray(arr) {
 
 test("reduce to a sum", async t => {
   const arr = [{ answer: 42 }, { answer: 43 }];
-  const tot = await reduce(reducer, 0, fromArray(arr));
+  const tot = await reduce(reducer, 1, fromArray(arr));
+  t.is(tot, 86);
+});
+
+test("the initial accumulator value default to the first item", async t => {
+  const arr = [42, 43];
+  const tot = await reduce(sum, undefined, fromArray(arr));
+  t.is(tot, 85);
+});
+
+test("can be partially applied", async t => {
+  const sum = reduce.with(reducer, 1);
+  const tot = await sum([{ answer: 42 }, { answer: 43 }]);
+  t.is(tot, 86);
+});
+
+test("initial accumulator value default to the first item when partially applied", async t => {
+  const reduceSum = reduce.with(sum);
+  const tot = await reduceSum([42, 43]);
   t.is(tot, 85);
 });
 
@@ -37,6 +59,23 @@ test("reducer receive item, index, iterable", async t => {
   );
 
   t.deepEqual(result, [{ index: 0 }, { index: 1 }]);
+});
+
+test("first index is 1 when initial accumulator not provided", async t => {
+  const arr = [42, 43];
+  const result = [];
+  await reduce(
+    (accumulator, item, index, iterable) => {
+      result.push(index);
+      t.is(accumulator, arr[0]);
+      t.is(iterable, arr);
+      return accumulator;
+    },
+    undefined,
+    arr
+  );
+
+  t.deepEqual(result, [1]);
 });
 
 test("predicate could return a promise", async t => {

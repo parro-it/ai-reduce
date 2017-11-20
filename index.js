@@ -1,5 +1,7 @@
 import isAsyncIterable from "is-async-iterable";
 
+const Unspecified = {};
+
 /**
  * The reduce() method applies a function against an accumulator and each element
  * in the async iterable to reduce it to a single promise.
@@ -16,13 +18,13 @@ import isAsyncIterable from "is-async-iterable";
  *
  *        data - The async iterable reduce was called upon.
  *
- * @param  {any} accumulator Value to use as the first argument to the first call of
+ * @param  {any} initialValue Value to use as the first argument to the first call of
  * the callback. If no initial value is supplied, the first element in the async iterable will
  * be used. Calling reduce on an empty async iterable without an initial value is an error.
  * @param  {AsyncIterable} data        The async iterable to reduce
  * @return {Promise}             The promise value that results from the reduction.
  */
-export default async function reduce(reducer, accumulator, data) {
+export default async function reduce(reducer, initialValue, data) {
   // ? console.log({ reducer, accumulator, data });
   if (typeof reducer !== "function") {
     throw new TypeError("reducer argument must be a function.");
@@ -33,12 +35,29 @@ export default async function reduce(reducer, accumulator, data) {
   }
 
   let index = 0;
+  let accumulator = initialValue;
+
+  if (accumulator === undefined) {
+    accumulator = Unspecified;
+  }
+
   for await (const item of data) {
-    accumulator = await reducer(accumulator, item, index++, data);
+    if (accumulator === Unspecified) {
+      accumulator = item;
+    } else {
+      accumulator = await reducer(accumulator, item, index, data);
+    }
+    index++;
+  }
+
+  if (accumulator === Unspecified) {
+    throw new TypeError(
+      "Reduce of empty async iterable with no initial value."
+    );
   }
 
   return accumulator;
 }
 
-reduce.partial = (reducer, accumulator) =>
-  reduce.bind(null, reducer, accumulator);
+reduce.with = (reducer, accumulator) => data =>
+  reduce(reducer, accumulator, data);
