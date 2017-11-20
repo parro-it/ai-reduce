@@ -16,19 +16,15 @@ in the async iterable (from left to right) to reduce it to a single value.
 
 ## Usage
 
-description of the example
+_Reduce to a sum an async iterable to sum of its elements:_
 
 ```js
-const aiReduce = require("ai-reduce");
-
-console.log({ aiReduce });
+import reduce from("ai-reduce");
+const add = (accum, item) => accum + item;
+console.log( await reduce([2, 3], add, 1) );
 ```
 
-This will output
-
-```
-
-```
+This will output 6
 
 ## API
 
