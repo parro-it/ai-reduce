@@ -62,5 +62,12 @@ export default async function reduce(data, reducer, initialValue) {
   return accumulator;
 }
 
+/**
+ * Higher order function that partially apply `reducer` and
+ * `accumulator` arguments to the reduce function.
+ * @param  {Function} reducer     The reducer argument to partially apply
+ * @param  {any} accumulator The accumulator argument to partially apply
+ * @return {Function}           A `reduce` unary function that take a data argument
+ */
 reduce.with = (reducer, accumulator) => data =>
   reduce(data, reducer, accumulator);
