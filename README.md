@@ -16,7 +16,7 @@ in the async iterable (from left to right) to reduce it to a single value.
 
 ## Usage
 
-_Reduce to a sum an async iterable to sum of its elements:_
+_Reduce to an async iterable to the sum of its elements:_
 
 ```js
 import reduce from("ai-reduce");
