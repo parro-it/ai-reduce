@@ -1,7 +1,7 @@
 import test from "tape-async";
 import reduce from ".";
 
-const arr = [42, 43];
+const arr = [42, Promise.resolve(43)];
 
 const add = (accum, item) => accum + item;
 const rejection = p => p.catch(err => err);

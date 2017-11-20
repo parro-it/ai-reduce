@@ -6,13 +6,13 @@
 > Reduce for async iterables.
 
 The reduce() method applies a function against an accumulator and each element
-in the array (from left to right) to reduce it to a single value.
+in the async iterable (from left to right) to reduce it to a single value.
 
 ## Async iterable fun
 
-**This module is part of
-[Async iterable fun](https://github.com/parro-it/ai-fun), a complete toolset of
-modules to work with async iterables.**
+> **_This module is part of
+> [Async iterable fun](https://github.com/parro-it/ai-fun), a complete toolset
+> of modules to work with async iterables._**
 
 ## Usage
 
