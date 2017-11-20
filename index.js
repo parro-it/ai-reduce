@@ -9,6 +9,7 @@ const Unspecified = {};
  * @param  {Function} reducer Function to execute on each element in the async iterable, taking four arguments:
  *     .
  *     ```
+ *
  *     __data__ - The async iterable reduce was called upon.
  *
  *     __accumulator__ - The accumulator accumulates the callback's return values; it is
