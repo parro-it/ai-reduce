@@ -7,17 +7,20 @@ const Unspecified = {};
  * in the async iterable to reduce it to a single promise.
  * @param  {AsyncIterable} data        The async iterable to reduce
  * @param  {Function} reducer Function to execute on each element in the async iterable, taking four arguments:
- *        data - The async iterable reduce was called upon.
- *        accumulator - The accumulator accumulates the callback's return values; it is
- *          the accumulated value previously returned in the last invocation of the
- *          callback, or initialValue, if supplied (see below).
+ *     .
+ *     ```
+ *     __data__ - The async iterable reduce was called upon.
  *
- *        currentValue - The current element being processed in the async iterable.
+ *     __accumulator__ - The accumulator accumulates the callback's return values; it is
+ *     the accumulated value previously returned in the last invocation of the
+ *     callback, or initialValue, if supplied (see below).
  *
- *        currentIndex - The index of the current element being processed in the async
- *          iterable. Starts at index 0, if an initialValue is provided, and at index 1
- *          otherwise.
+ *     __currentValue__ - The current element being processed in the async iterable.
  *
+ *     __currentIndex__ - The index of the current element being processed in the async
+ *     iterable. Starts at index 0, if an initialValue is provided, and at index 1
+ *     otherwise.
+ *     ```
  *
  * @param  {any} initialValue Value to use as the first argument to the first call of
  * the callback. If no initial value is supplied, the first element in the async iterable will
