@@ -4,6 +4,10 @@ import reduce from ".";
 const arr = [42, 43];
 
 const add = (accum, item) => accum + item;
+const rejection = p => p.catch(err => err);
+const fail = () => {
+  throw new Error("test");
+};
 
 test("exports a function", async t => {
   t.is(typeof reduce, "function");
@@ -46,15 +50,13 @@ test("reducer receive item, index, iterable", async t => {
 });
 
 test("first index is 1 when initial accumulator not provided", async t => {
-  const result = [];
-  await reduce(arr, (accumulator, item, index, iterable) => {
-    result.push(index);
-    t.is(accumulator, arr[0]);
-    t.is(iterable, arr);
-    return accumulator;
-  });
+  const first = [];
+  const data = [first, ...arr];
+  const result = await reduce(data, (accumulator, item, index) =>
+    accumulator.concat(index)
+  );
 
-  t.deepEqual(result, [1]);
+  t.deepEqual(result, [1, 2]);
 });
 
 test("predicate could return a promise", async t => {
@@ -63,36 +65,22 @@ test("predicate could return a promise", async t => {
 });
 
 test("throw async if data is not an async iterable", async t => {
-  const err = await reduce(0, () => 0).catch(err => err);
+  const err = await rejection(reduce(0, () => 0));
 
   t.is(err.message, "data argument must be an iterable or async-iterable.");
 });
 
 test("throw async if reducer is not a function", async t => {
-  const err = await reduce([0], 0).catch(err => err);
+  const err = await rejection(reduce([0], 0));
   t.is(err.message, "reducer argument must be a function.");
 });
 
 test("throw async if reducer throws", async t => {
-  const err = await reduce(
-    ["ciao"],
-    () => {
-      throw new Error("test");
-    },
-    0
-  ).catch(err => err);
-
+  const err = await rejection(reduce(["ciao"], fail, 0));
   t.is(err.message, "test");
 });
 
 test("throw async during iteration if reducer return a rejected promise", async t => {
-  const err = await reduce(
-    ["ciao"],
-    async () => {
-      throw new Error("test");
-    },
-    0
-  ).catch(err => err);
-
+  const err = await rejection(reduce(["ciao"], async () => fail(), 0));
   t.is(err.message, "test");
 });
