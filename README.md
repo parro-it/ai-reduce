@@ -41,8 +41,9 @@ in the async iterable to reduce it to a single promise.
 * `reducer`
   **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)**
   Function to execute on each element in the async iterable, taking four
-  arguments: ```
+  arguments:
 
+```
       __data__ - The async iterable reduce was called upon.
 
       __accumulator__ - The accumulator accumulates the callback's return values; it is
@@ -54,7 +55,7 @@ in the async iterable to reduce it to a single promise.
       __currentIndex__ - The index of the current element being processed in the async
       iterable. Starts at index 0, if an initialValue is provided, and at index 1
       otherwise.
-      ```
+```
 
 * `initialValue` **any** Value to use as the first argument to the first call of
   the callback. If no initial value is supplied, the first element in the async
