@@ -57,14 +57,14 @@ in the async iterable to reduce it to a single promise.
       otherwise.
 ```
 
-* `initialValue` **any** Value to use as the first argument to the first call of
-  the callback. If no initial value is supplied, the first element in the async
-  iterable will be used. Calling reduce on an empty async iterable without an
-  initial value is an error.
+* `initialValue` **any** Value to use as `accumulator` argument in the first
+  call of `reducer`. If no initial value is supplied, the first element in the
+  async iterable will be used. Calling reduce on an empty async iterable without
+  an initial value is an error.
 
 Returns
 **[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)**
-The promise value that results from the reduction.
+The promise value results from the reduction operation.
 
 ## Install
 
