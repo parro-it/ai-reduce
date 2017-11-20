@@ -44,14 +44,13 @@ in the async iterable to reduce it to a single promise.
   arguments:
 
 ```
-           data - The async iterable reduce was called upon.
-           accumulator - The accumulator accumulates the callback's return values; it is
-             the accumulated value previously returned in the last invocation of the
-             callback, or initialValue, if supplied (see below).       currentValue - The current element being processed in the async iterable.
+  data - The async iterable reduce was called upon.
 
-           currentIndex - The index of the current element being processed in the async
-             iterable. Starts at index 0, if an initialValue is provided, and at index 1
-             otherwise.
+  accumulator - The accumulator accumulates the callback's return values; it is the accumulated value previously returned in the last invocation of the callback, or initialValue, if supplied (see below).
+
+  currentValue - The current element being processed in the async iterable.
+
+  currentIndex - The index of the current element being processed in the async iterable. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.
 ```
 
 * `initialValue` **any** Value to use as the first argument to the first call of
