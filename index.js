@@ -47,14 +47,18 @@ export default async function reduce(data, reducer, initialValue) {
   if (accumulator === undefined) {
     accumulator = Unspecified;
   }
+  const generator = data[Symbol.asyncIterator] || data[Symbol.iterator];
+  const iterator = generator.call(data);
 
-  for await (const item of data) {
+  let it = await iterator.next();
+  while (!it.done) {
     if (accumulator === Unspecified) {
-      accumulator = item;
+      accumulator = it.value;
     } else {
-      accumulator = await reducer(accumulator, item, index, data);
+      accumulator = await reducer(accumulator, await it.value, index, data);
     }
     index++;
+    it = await iterator.next();
   }
 
   if (accumulator === Unspecified) {
