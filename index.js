@@ -16,7 +16,6 @@ function checkReducerArgument(reducer) {
  *     .
  *     ```
  *
- *     __data__ - The async iterable reduce was called upon.
  *
  *     __accumulator__ - The accumulator accumulates the callback's return values; it is
  *     the accumulated value previously returned in the last invocation of the
@@ -27,6 +26,8 @@ function checkReducerArgument(reducer) {
  *     __currentIndex__ - The index of the current element being processed in the async
  *     iterable. Starts at index 0, if an initialValue is provided, and at index 1
  *     otherwise.
+ *
+ *     __data__ - The async iterable reduce was called upon.
  *     ```
  *
  * @param  {any} initialValue Value to use as the first argument to the first call of

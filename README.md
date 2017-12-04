@@ -37,50 +37,40 @@ in the async iterable to reduce it to a single promise.
 
 **Parameters**
 
-* `data` **AsyncIterable** The async iterable to reduce
-* `reducer`
-  **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)**
-  Function to execute on each element in the async iterable, taking four
-  arguments:
+-   `data` **AsyncIterable** The async iterable to reduce
+-   `reducer` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** Function to execute on each element in the async iterable, taking four arguments:
+        .    ```
 
-```
-      data - The async iterable reduce was called upon.
 
-      accumulator - The accumulator accumulates the callback's return values; it is
-      the accumulated value previously returned in the last invocation of the
-      callback, or initialValue, if supplied (see below).
+        __accumulator__ - The accumulator accumulates the callback's return values; it is
+        the accumulated value previously returned in the last invocation of the
+        callback, or initialValue, if supplied (see below).
 
-      currentValue - The current element being processed in the async iterable.
+        __currentValue__ - The current element being processed in the async iterable.
 
-      currentIndex - The index of the current element being processed in the async
-      iterable. Starts at index 0, if an initialValue is provided, and at index 1
-      otherwise.
-```
+        __currentIndex__ - The index of the current element being processed in the async
+        iterable. Starts at index 0, if an initialValue is provided, and at index 1
+        otherwise.
 
-* `initialValue` **any** Value to use as the first argument to the first call of
-  the callback. If no initial value is supplied, the first element in the async
-  iterable will be used. Calling reduce on an empty async iterable without an
-  initial value is an error.
+        __data__ - The async iterable reduce was called upon.
+        ```
+-   `initialValue` **any** Value to use as the first argument to the first call of
+    the callback. If no initial value is supplied, the first element in the async iterable will
+    be used. Calling reduce on an empty async iterable without an initial value is an error.
 
-Returns
-**[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)**
-The promise value that results from the reduction.
+Returns **[Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)** The promise value that results from the reduction.
 
 ### with
 
-Higher order function that partially apply `reducer` and `accumulator` arguments
-to the reduce function.
+Higher order function that partially apply `reducer` and
+`accumulator` arguments to the reduce function.
 
 **Parameters**
 
-* `reducer`
-  **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)**
-  The reducer argument to partially apply
-* `accumulator` **any** The accumulator argument to partially apply
+-   `reducer` **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** The reducer argument to partially apply
+-   `accumulator` **any** The accumulator argument to partially apply
 
-Returns
-**[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)**
-A `reduce` unary function that take a data argument
+Returns **[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function)** A `reduce` unary function that take a data argument
 
 ## Install
 
@@ -92,8 +82,8 @@ npm install --save ai-reduce
 
 ## See Also
 
-* [`noffle/common-readme`](https://github.com/noffle/common-readme)
-* [`parro-it/ai-fun`](https://github.com/parro-it/ai-fun)
+-   [`noffle/common-readme`](https://github.com/noffle/common-readme)
+-   [`parro-it/ai-fun`](https://github.com/parro-it/ai-fun)
 
 ## License
 
